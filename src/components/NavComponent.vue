@@ -1,7 +1,7 @@
 <template>
   <nav class="nav" :class="{ active: burgerVisibility }">
     <div class="nav__content">
-      <button class="nav__close" @click="handleMenu">X</button>
+      <button class="nav__close button" @click="handleMenu">X</button>
       <ul class="nav__list list">
         <li class="list__item item">
           <a class="item__link link" href="#">Popular Places</a>
@@ -47,6 +47,7 @@ export default {
   &__list {
     @include onDesktop {
       display: flex;
+      align-items: center;
       gap: 37px;
     }
   }
@@ -91,16 +92,23 @@ export default {
   .item {
     list-style: none;
 
-    &__link {
-      font-family: "Raleway";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 21px;
+    @include onMobile {
+      padding-bottom: 10px;
+    }
 
-      color: #024873;
+    &__link {
+      @include linkText;
+      text-decoration: none;
     }
   }
+}
+
+.button {
+  background: #ff843f;
+  border-radius: 40px;
+  padding: 15px 35px;
+  border: none;
+  @include linkText(white);
 }
 
 .active {
